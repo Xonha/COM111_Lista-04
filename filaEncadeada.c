@@ -188,16 +188,17 @@ int chamar_senha(Fila *XP, Fila *XC, Fila *NP, Fila *NC)
     return 0;
 
   int value = 0;
+  int ctrlTipo = rand()%2; // 0 = negocial; 1 = caixa
 
   if(XP->quant == 0 && NP->quant == 0){
       ctrlPerfil = 0;
   }
 
   if((ctrlPerfil == 1 || ctrlPerfil == 2) && (XP->quant > 0 || NP->quant > 0)){
-    if(XP->quant > 0){
+    if(XP->quant > 0 && ctrlTipo == 1){
       consultar_inicio_fila(XP, &value);
       desenfileirar(XP);
-    }else if(NP->quant > 0){
+    }else if(NP->quant > 0 && ctrlTipo == 0){
       consultar_inicio_fila(NP, &value);
       desenfileirar(NP);
     }
@@ -205,10 +206,10 @@ int chamar_senha(Fila *XP, Fila *XC, Fila *NP, Fila *NC)
     ctrlPerfil--;
 
   }else if((ctrlPerfil == 0) && (XC->quant > 0 || NC->quant > 0)){
-    if(XC->quant > 0){
+    if(XC->quant > 0 && ctrlTipo == 1){
       consultar_inicio_fila(XC, &value);
       desenfileirar(XC);
-    }else if(NC->quant > 0){
+    }else if(NC->quant > 0 && ctrlTipo == 0){
       consultar_inicio_fila(NC, &value);
       desenfileirar(NC);
     }
