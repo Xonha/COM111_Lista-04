@@ -152,7 +152,7 @@ int main(void) {
         break;
 
       case 7:
-        ok = chamar_proxima_senha(XP, XC, NP, NC, SE);
+        ok = chamar_senha_aleatoria(XP, XC, NP, NC, SE);
 
       case 8:
 

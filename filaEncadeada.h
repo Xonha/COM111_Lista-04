@@ -21,6 +21,6 @@ int consultar_inicio_fila(Fila *fi, int *dado);
 
 // novas funcoes da lista
 void imprimir_fila(Fila *fi, char * prefix);
-int chamar_proxima_senha(Fila *XP, Fila *XC, Fila *NP, Fila *NC, Fila *SE);
+int chamar_senha_aleatoria(Fila *XP, Fila *XC, Fila *NP, Fila *NC, Fila *SE);
 
 #endif 

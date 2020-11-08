@@ -166,7 +166,7 @@ void imprimir_fila(Fila *fi, char * prefix){
     }
 }
 
-int chamar_proxima_senha(Fila *XP, Fila *XC, Fila *NP, Fila *NC, Fila *SE){
+int chamar_senha_aleatoria(Fila *XP, Fila *XC, Fila *NP, Fila *NC, Fila *SE){
   if(XP == NULL || XC == NULL || NP == NULL || NC == NULL){
     return 0;
   }
