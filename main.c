@@ -17,23 +17,34 @@ int main(void)
 
   // no início a fila está vazia, logo, o ponteiro inicio tem valor NULL
   //o ponteiro inicio conterá o endereço do primeiro elemento da fila
-  Fila *SE = NULL, *XP = NULL, *XC = NULL, *NP = NULL, *NC = NULL, *fi = NULL;
+  // Fila *SE = NULL, *XP = NULL, *XC = NULL, *NP = NULL, *NC = NULL;
   int opcao, ok;
   int dado, limite;
   char perfil, tipo;
+
+  Fila *XP = criar_fila();
+  Fila *XC = criar_fila();
+  Fila *NP = criar_fila();
+  Fila *NC = criar_fila();
+  Fila *SE = criar_fila();
+
+  printf("\n Digite o limite de senhas: ");
+  scanf("%d", &limite);
+  ok = criar_fila_se(SE, limite);
+  if(ok){
+    printf("\n Filas criadas com sucesso!");
+  }else{
+    printf("\n Filas não criadas!");
+  }
 
   // menu de opções para execuções de operações sobre a fila
   do
   {
     printf("\n\nMenu de opções");
-    printf("\n1 - Criar filas");
-    printf("\n2 - Liberar filas");
-    printf("\n3 - Retirar senha");
-    // printf("\n4 - Remover senha");
-    printf("\n5 - Consultar primeiro elemento da fila");
-    printf("\n6 - Imprimir filas");
-    printf("\n7 - Chamar próxima senha");
-    printf("\n8 - Sair");
+    printf("\n1 - Retirar senha");
+    printf("\n2 - Imprimir filas");
+    printf("\n3 - Chamar próxima senha");
+    printf("\n4 - Sair");
     printf("\nOpção: ");
     scanf("%d", &opcao);
 
@@ -41,48 +52,6 @@ int main(void)
     {
 
     case 1:
-
-      // criar fila
-      XP = criar_fila();
-      XC = criar_fila();
-      NP = criar_fila();
-      NC = criar_fila();
-      SE = criar_fila();
-
-      if (XP != NULL && XC != NULL && NP != NULL && NC != NULL)
-      {
-        printf("\n Digite o limite de senhas: ");
-        scanf("%d", &limite);
-        ok = criar_fila_se(SE, limite);
-
-        printf("\n Filas criadas com sucesso!");
-      }
-      else
-      {
-        printf("\n Filas não criadas!");
-      }
-      break;
-
-    case 2:
-
-      // liberar fila
-      ok = liberar_fila(XP);
-      ok = liberar_fila(XC);
-      ok = liberar_fila(NP);
-      ok = liberar_fila(NC);
-      ok = liberar_fila(SE);
-
-      if (ok)
-      {
-        printf("\n Filas liberadas com sucesso!");
-      }
-      else
-      {
-        printf("\n Filas não liberadas!");
-      }
-      break;
-
-    case 3:
 
       // enfileirar elemento
       printf("\nDigite seu tipo de atendimento: \n(X - Caixa, N - Negocial) \nInsira(X/N): ");
@@ -134,39 +103,7 @@ int main(void)
 
       break;
 
-    case 4:
-
-      // desenfileirar elemento
-      // ok = desenfileirar(fi);
-
-      // if (ok == 1)
-      // {
-      //   printf("\n Remoção realizada com sucesso!");
-      // }
-      // else
-      // {
-      //   printf("\n Falha na remoção!");
-      // }
-      // break;
-
-    case 5:
-
-      ok = consultar_inicio_fila(fi, &dado);
-
-      if (ok)
-      {
-        printf("\n Busca realizada com sucesso!");
-        printf("\n Elemento no início da fila: ");
-        printf("%d", dado);
-      }
-      else
-      {
-        printf("\n Fila vazia!");
-      }
-
-      break;
-
-    case 6:
+    case 2:
       imprimir_fila(SE, "SE");
       imprimir_fila(XP, "XP");
       imprimir_fila(XC, "XC");
@@ -175,14 +112,13 @@ int main(void)
 
       break;
 
-    case 7:
+    case 3:
       ok = chamar_senha(XP, XC, NP, NC);
       break;
 
-    case 8:
+    case 4:
 
       // libera memória e finaliza programa
-      liberar_fila(fi);
       liberar_fila(SE);
       liberar_fila(XP);
       liberar_fila(XC);
@@ -197,7 +133,18 @@ int main(void)
       break;
     }
 
-  } while (opcao != 8);
+    ok = usuarios_atendidos_fila(XP, XC, NP, NC, SE);
+    if(ok){
+      printf("Finalizando...");
+      liberar_fila(SE);
+      liberar_fila(XP);
+      liberar_fila(XC);
+      liberar_fila(NP);
+      liberar_fila(NC);
+      break;
+    }
+
+  } while (opcao != 4);
 
   return 0;
 }

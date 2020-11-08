@@ -22,5 +22,6 @@ int consultar_inicio_fila(Fila *fi, int *dado);
 // novas funcoes da lista
 void imprimir_fila(Fila *fi, char *prefix);
 int chamar_senha(Fila *XP, Fila *XC, Fila *NP, Fila *NC);
+int usuarios_atendidos_fila(Fila *XP, Fila *XC, Fila *NP, Fila *NC, Fila *SE);
 
 #endif

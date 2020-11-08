@@ -6,6 +6,7 @@
 #include "filaEncadeada.h"
 
 int ctrlPerfil = 2;
+int qtdXP = 0; int qtdXC = 0; int qtdNP = 0; int qtdNC = 0;
 
 //criando elemento
 struct elemento
@@ -182,12 +183,26 @@ void imprimir_fila(Fila *fi, char *prefix)
   }
 }
 
+int usuarios_atendidos_fila(Fila *XP, Fila *XC, Fila *NP, Fila *NC, Fila *SE){
+  if(XP->quant == 0 && XC->quant == 0 && NP->quant == 0 && NC->quant == 0 && SE->quant == 0){
+    printf("\nFila XP atendeu %d clientes\n", qtdXP);
+    printf("\nFila XC atendeu %d clientes\n", qtdXC);
+    printf("\nFila NP atendeu %d clientes\n", qtdNP);
+    printf("\nFila NC atendeu %d clientes\n", qtdNC);
+
+    return 1;
+  }
+
+  return 0;
+}
+
 int chamar_senha(Fila *XP, Fila *XC, Fila *NP, Fila *NC)
 {
   if (XP == NULL && XC == NULL && NP == NULL && NC == NULL)
     return 0;
 
   int value = 0;
+  char * prefix = NULL; 
   int ctrlTipo = rand()%2; // 0 = negocial; 1 = caixa
 
   if(XP->quant == 0 && NP->quant == 0){
@@ -198,9 +213,13 @@ int chamar_senha(Fila *XP, Fila *XC, Fila *NP, Fila *NC)
     if(XP->quant > 0 && ctrlTipo == 1){
       consultar_inicio_fila(XP, &value);
       desenfileirar(XP);
+      prefix = "XP";
+      qtdXP++;
     }else if(NP->quant > 0 && ctrlTipo == 0){
       consultar_inicio_fila(NP, &value);
       desenfileirar(NP);
+      prefix = "NP";
+      qtdNP++;
     }
 
     ctrlPerfil--;
@@ -209,15 +228,19 @@ int chamar_senha(Fila *XP, Fila *XC, Fila *NP, Fila *NC)
     if(XC->quant > 0 && ctrlTipo == 1){
       consultar_inicio_fila(XC, &value);
       desenfileirar(XC);
+      prefix = "XC";
+      qtdXC++;
     }else if(NC->quant > 0 && ctrlTipo == 0){
       consultar_inicio_fila(NC, &value);
       desenfileirar(NC);
+      prefix = "NC";
+      qtdNC++;
     }
 
     ctrlPerfil = 2;
   }
 
-  printf("Senha á ser atendida: %d", value);
+  printf("Senha á ser atendida: %s%d", prefix, value);
 
   return 1;
 }
