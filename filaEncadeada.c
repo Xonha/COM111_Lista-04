@@ -26,6 +26,27 @@ struct descritor
   int quant;
 };
 
+
+int criar_dado(int *dado)
+{
+  printf("\nDigite um número inteiro: ");
+  scanf("%d", dado);
+
+  return 1;
+}
+
+int criar_fila_se(Fila *SE, int limite)
+{
+  int ignore;
+
+  for (int i = 0; i < limite; i++)
+  {
+    ignore = enfileirar(SE, i + 1);
+  }
+
+  return ignore;
+}
+
 // função para alocar memória do tipo Fila
 Fila *criar_fila()
 {

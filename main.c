@@ -1,11 +1,6 @@
-
-// bibliotecas do sistema
 #include <stdio.h>
 #include <stdlib.h>
-
-// bibliotecas do projeto
 #include "filaEncadeada.h"
-// #include "filaEncadeada.c"
 
 // protótipo da função que cria um dado
 int criar_dado(int *dado);
@@ -14,10 +9,6 @@ int criar_fila_se(Fila *SE, int limite);
 // funcao principal
 int main(void)
 {
-
-  // no início a fila está vazia, logo, o ponteiro inicio tem valor NULL
-  //o ponteiro inicio conterá o endereço do primeiro elemento da fila
-  // Fila *SE = NULL, *XP = NULL, *XC = NULL, *NP = NULL, *NC = NULL;
   int opcao, ok;
   int dado, limite;
   char perfil, tipo;
@@ -28,13 +19,13 @@ int main(void)
   Fila *NC = criar_fila();
   Fila *SE = criar_fila();
 
-  printf("\n Digite o limite de senhas: ");
+  printf("\nDigite o limite de senhas: ");
   scanf("%d", &limite);
   ok = criar_fila_se(SE, limite);
   if(ok){
-    printf("\n Filas criadas com sucesso!");
+    printf("\nFilas criadas com sucesso!");
   }else{
-    printf("\n Filas não criadas!");
+    printf("\nFilas não criadas!");
   }
 
   // menu de opções para execuções de operações sobre a fila
@@ -147,24 +138,4 @@ int main(void)
   } while (opcao != 4);
 
   return 0;
-}
-
-int criar_dado(int *dado)
-{
-  printf("\nDigite um número inteiro: ");
-  scanf("%d", dado);
-
-  return 1;
-}
-
-int criar_fila_se(Fila *SE, int limite)
-{
-  int ignore;
-
-  for (int i = 0; i < limite; i++)
-  {
-    ignore = enfileirar(SE, i + 1);
-  }
-
-  return ignore;
 }
