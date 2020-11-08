@@ -187,7 +187,36 @@ int chamar_senha(Fila *XP, Fila *XC, Fila *NP, Fila *NC)
   if (XP == NULL && XC == NULL && NP == NULL && NC == NULL)
     return 0;
 
-  printf("%d", XP->quant);
+  int value = 0;
+
+  if(XP->quant == 0 && NP->quant == 0){
+      ctrlPerfil = 0;
+  }
+
+  if((ctrlPerfil == 1 || ctrlPerfil == 2) && (XP->quant > 0 || NP->quant > 0)){
+    if(XP->quant > 0){
+      consultar_inicio_fila(XP, &value);
+      desenfileirar(XP);
+    }else if(NP->quant > 0){
+      consultar_inicio_fila(NP, &value);
+      desenfileirar(NP);
+    }
+
+    ctrlPerfil--;
+
+  }else if((ctrlPerfil == 0) && (XC->quant > 0 || NC->quant > 0)){
+    if(XC->quant > 0){
+      consultar_inicio_fila(XC, &value);
+      desenfileirar(XC);
+    }else if(NC->quant > 0){
+      consultar_inicio_fila(NC, &value);
+      desenfileirar(NC);
+    }
+
+    ctrlPerfil = 2;
+  }
+
+  printf("Senha á ser atendida: %d", value);
 
   return 1;
 }

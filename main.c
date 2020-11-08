@@ -5,7 +5,7 @@
 
 // bibliotecas do projeto
 #include "filaEncadeada.h"
-#include "filaEncadeada.c"
+// #include "filaEncadeada.c"
 
 // protótipo da função que cria um dado
 int criar_dado(int *dado);
@@ -29,7 +29,7 @@ int main(void)
     printf("\n1 - Criar filas");
     printf("\n2 - Liberar filas");
     printf("\n3 - Retirar senha");
-    printf("\n4 - Remover senha");
+    // printf("\n4 - Remover senha");
     printf("\n5 - Consultar primeiro elemento da fila");
     printf("\n6 - Imprimir filas");
     printf("\n7 - Chamar próxima senha");
@@ -93,25 +93,25 @@ int main(void)
 
       consultar_inicio_fila(SE, &dado);
 
-      if (tipo == 'X' && perfil == 'C')
+      if ((tipo == 'X' || tipo =='x' ) && (perfil == 'C' || perfil == 'c'))
       {
         ok = enfileirar(XC, dado);
         printf("\nFila XC: ");
         imprimir_fila(XC, "XC");
       }
-      else if (tipo == 'X' && perfil == 'P')
+      else if ((tipo == 'X' || tipo =='x' ) && (perfil == 'P' || perfil == 'p'))
       {
         ok = enfileirar(XP, dado);
         printf("\nFila XP: ");
         imprimir_fila(XP, "XP");
       }
-      else if (tipo == 'N' && perfil == 'C')
+      else if ((tipo == 'N' || tipo =='n' ) && (perfil == 'C' || perfil == 'c'))
       {
         ok = enfileirar(NC, dado);
         printf("\nFila NC: ");
         imprimir_fila(NC, "NC");
       }
-      else if (tipo == 'N' && perfil == 'P')
+      else if ((tipo == 'N' || tipo =='n' ) && (perfil == 'P' || perfil == 'p'))
       {
         ok = enfileirar(NP, dado);
         printf("\nFila NP: ");
@@ -137,17 +137,17 @@ int main(void)
     case 4:
 
       // desenfileirar elemento
-      ok = desenfileirar(fi);
+      // ok = desenfileirar(fi);
 
-      if (ok == 1)
-      {
-        printf("\n Remoção realizada com sucesso!");
-      }
-      else
-      {
-        printf("\n Falha na remoção!");
-      }
-      break;
+      // if (ok == 1)
+      // {
+      //   printf("\n Remoção realizada com sucesso!");
+      // }
+      // else
+      // {
+      //   printf("\n Falha na remoção!");
+      // }
+      // break;
 
     case 5:
 
